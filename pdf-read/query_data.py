@@ -5,6 +5,18 @@ from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_community.llms import Ollama
 from langchain.prompts import ChatPromptTemplate
 
+import os
+import sys
+
+# getting the name of the directory where the this file is present.
+# Getting the parent directory name where the current directory is present.
+# adding the parent directory to the sys.path.
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+
+import common 
+
 CHROMA_PATH = "../chroma/pdf-read"
 
 PROMPT_TEMPLATE = """
