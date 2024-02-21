@@ -5,7 +5,7 @@ from langchain_community.embeddings.ollama import OllamaEmbeddings
 from langchain_community.llms import Ollama
 from langchain.prompts import ChatPromptTemplate
 
-CHROMA_PATH = "chroma"
+CHROMA_PATH = "../chroma/pdf-read"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:

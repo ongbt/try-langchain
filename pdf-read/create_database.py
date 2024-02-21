@@ -11,8 +11,8 @@ from langchain.vectorstores.chroma import Chroma
 import os
 import shutil
 
-CHROMA_PATH = "chroma"
-DATA_PATH = "data/books"
+CHROMA_PATH = "../chroma/pdf-read"
+DATA_PATH = "../data/books"
 
 
 
