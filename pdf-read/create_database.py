@@ -9,6 +9,9 @@ from langchain.vectorstores.chroma import Chroma
 import os
 import shutil
 import sys
+# from dotenv import load_dotenv
+
+# load_dotenv() 
 
 # getting the name of the directory where the this file is present.
 # Getting the parent directory name where the current directory is present.

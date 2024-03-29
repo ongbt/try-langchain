@@ -14,7 +14,7 @@ output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
 
-chain.invoke({"input": "how can langsmith help with testing?"})
-
+response = chain.invoke({"input": "how can langsmith help with testing?"})
+print(response)
 
 
