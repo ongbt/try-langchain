@@ -19,7 +19,7 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 
-CHROMA_PATH = "chroma/pdfread/xian_tour"
+CHROMA_PATH = "chroma/pdfread/"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -32,15 +32,9 @@ Answer the question based on the above context: {question}
 """
 
 
-def get_query_text():
-    # Create CLI.
-    parser = argparse.ArgumentParser()
-    parser.add_argument("query_text", type=str, help="The query text.")
-    args = parser.parse_args()
-    return args.query_text
-
-
-def interactive(chroma_path, prompt_template_text):
+def interactive(root_chroma_path, prompt_template_text):
+    topic = common.get_topic()
+    chroma_path = root_chroma_path + topic
 
     # Prepare the DB.
     embedding_function = OllamaEmbeddings()
@@ -77,11 +71,10 @@ def interactive(chroma_path, prompt_template_text):
         print("\n\n")
 
 
-def main():
-
-    query_text = get_query_text()
-    response_text, results = run(CHROMA_PATH, PROMPT_TEMPLATE, query_text)
-    parse_response(response_text=response_text, results=results)
+# def main():
+#     query_text = get_query_text()
+#     response_text, results = run(CHROMA_PATH, PROMPT_TEMPLATE, query_text)
+#     parse_response(response_text=response_text, results=results)
 
 
 def parse_response(response_text, results):
@@ -124,5 +117,5 @@ if __name__ == "__main__":
     interactive(CHROMA_PATH, PROMPT_TEMPLATE)
 
 
-# python query_data.py "data privacy protection?"
+# python -m pdfread.query_data "xian_tour"     
     # Difference between Data Security and Cybersecurity

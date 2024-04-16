@@ -10,6 +10,7 @@ from langchain.schema import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import DirectoryLoader
 
+import argparse
 
 # from langchain.embeddings import OpenAIEmbeddings
 # from dotenv import load_dotenv
@@ -24,8 +25,8 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 
 
-CHROMA_PATH = "chroma/pdfread/xian_tour"
-DATA_PATH = "data/xian_tour"
+CHROMA_PATH = "chroma/pdfread/"
+DATA_PATH = "data/"
 
 
 def main():
@@ -33,14 +34,21 @@ def main():
 
 
 def generate_data_store():
-    documents = common.load_documents(DATA_PATH)
+
+    topic = common.get_topic()
+
+    data_path = DATA_PATH + topic
+    print(f"Loading Data from {data_path}")
+    documents = common.load_documents(data_path)
     chunks = common.split_text(documents)
     print("Saving to Database...")
-    common.save_to_chroma(chunks, CHROMA_PATH)
+
+    chroma_path = CHROMA_PATH + topic
+    common.save_to_chroma(chunks, chroma_path)
 
 
 if __name__ == "__main__":
     main()
 
 
-# python - m pdfread.create_database
+# python -m pdfread.create_database "xian_tour"
